@@ -1,0 +1,691 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Relatórios Finais de Extensão Curricular UniLS (sem nomes)</title>
+<style>
+:root{
+  --color-fg:#1f2328; --color-fg-muted:#5b6470; --color-bg:#f5f4f0; --color-panel:#ffffff; --color-border-line:#dcdad3;
+  --color-ok:#2f7d6d; --color-warn:#c9722e; --color-bad:#b3402f;
+  --cds-gap-xs:.25rem; --cds-gap-sm:.5rem; --cds-gap-md:1rem; --cds-gap-lg:1.5rem; --cds-gap-xl:2rem;
+  --cds-pad-lg:1.25rem; --cds-radius:8px;
+  --cds-font-size-caption:.8125rem; --cds-font-size-body:.9375rem; --cds-font-size-heading:1.0625rem; --cds-font-size-title:1.75rem;
+  --cds-font-weight-medium:600;
+  --cds-chart-muted:#b9b6ac; --cds-chart-grid:#e3e1da; --cds-chart-axis:#4a5560;
+  --cds-chart-status-good:#2f7d6d; --cds-chart-status-warning:#c9722e;
+  --font-anthropic-sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --font-anthropic-serif:Georgia,"Times New Roman",serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --color-fg:#ecebe6; --color-fg-muted:#a7a79f; --color-bg:#1b1c1e; --color-panel:#252628; --color-border-line:#3a3b3e;
+    --color-ok:#4fb39c; --color-warn:#e0904f; --color-bad:#e0705f;
+    --cds-chart-muted:#6c6d70; --cds-chart-grid:#37383b; --cds-chart-axis:#c2c2ba;
+    --cds-chart-status-good:#4fb39c; --cds-chart-status-warning:#e0904f;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--color-bg);color:var(--color-fg);font-family:var(--font-anthropic-sans);padding:24px 16px 48px}
+[hidden]{display:none !important}
+@media print{ body{padding:0} .lx-tablebox{max-height:none !important;overflow:visible !important} .lx-tools{display:none} .lx-detail{display:none} }
+</style>
+</head>
+<body>
+<style>
+.lx-page { max-width: 80rem; margin-inline: auto; font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.lx-page * { box-sizing: border-box; }
+.lx-head { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lx-eyebrow { font-size: var(--cds-font-size-caption); letter-spacing: .06em; text-transform: uppercase; color: var(--color-fg-muted); }
+.lx-page h1 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.15; text-wrap: balance; }
+.lx-take { margin: 0; max-width: 62ch; font-size: var(--cds-font-size-body); line-height: 1.5; color: var(--color-fg); }
+.lx-take b { font-weight: 600; }
+.lx-section { display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.lx-page h2 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.lx-sub { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+.lx-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 11.5rem), 1fr)); gap: var(--cds-gap-md); }
+.lx-kpi { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-xs); min-width: 0; }
+.lx-kpi-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2.25rem; line-height: 1.05; font-variant-numeric: tabular-nums; }
+.lx-pair { display: flex; gap: var(--cds-gap-lg); align-items: flex-end; flex-wrap: wrap; }
+.lx-pair > div { display: flex; flex-direction: column; gap: 2px; }
+.lx-pair .lx-num.lx-alt { color: var(--color-fg-muted); }
+.lx-pair-l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-kpi-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.4; }
+.lx-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr)); gap: var(--cds-gap-md); }
+.lx-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-md); min-width: 0; }
+.lx-card h3 { margin: 0; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); }
+.lx-seg { display: flex; height: 1.25rem; border-radius: 4px; overflow: hidden; gap: 2px; min-height: 1.25rem; }
+.lx-seg > span { display: block; min-width: 2px; }
+.lx-legend { display: flex; flex-direction: column; gap: var(--cds-gap-xs); margin: 0; padding: 0; list-style: none; }
+.lx-legend li { display: grid; grid-template-columns: 0.75rem 1fr auto auto; gap: var(--cds-gap-sm); align-items: center; font-size: var(--cds-font-size-body); }
+.lx-sw { width: .75rem; height: .75rem; border-radius: 3px; }
+.lx-legend .n { font-variant-numeric: tabular-nums; font-weight: 600; text-align: right; }
+.lx-legend .p { font-variant-numeric: tabular-nums; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); min-width: 3.2rem; text-align: right; }
+.lx-hist { display: grid; grid-template-columns: repeat(5, 1fr); gap: var(--cds-gap-sm); align-items: end; min-height: 11rem; }
+.lx-hist > div { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; height: 100%; min-width: 0; }
+.lx-hist .bar { width: 100%; max-width: 3.5rem; border-radius: 4px 4px 0 0; min-height: 2px; }
+.lx-hist .v { font-variant-numeric: tabular-nums; font-weight: 600; font-size: var(--cds-font-size-body); }
+.lx-hist .l { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); text-align: center; line-height: 1.25; }
+.lx-courses { display: flex; flex-direction: column; gap: var(--cds-gap-sm); }
+.lx-course { display: grid; grid-template-columns: minmax(6.5rem, 9rem) 1fr; gap: var(--cds-gap-sm); align-items: center; }
+.lx-course .name { font-size: var(--cds-font-size-body); overflow-wrap: anywhere; }
+.lx-course .track { position: relative; height: 1rem; background: var(--cds-chart-muted); border-radius: 4px; opacity: 1; }
+.lx-course .fill-all { position: absolute; inset: 0 auto 0 0; background: var(--cds-chart-muted); border-radius: 4px; }
+.lx-course .fill-ok { position: absolute; inset: 0 auto 0 0; border-radius: 4px; }
+.lx-course .meta { grid-column: 2; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; margin-top: -4px; }
+.lx-track-wrap { position: relative; height: 1rem; }
+.lx-track-wrap .all { position: absolute; inset: 0 auto 0 0; background: var(--cds-chart-grid); border-radius: 4px; }
+.lx-track-wrap .ok { position: absolute; inset: 0 auto 0 0; border-radius: 4px; }
+.lx-pot { display: flex; flex-direction: column; gap: var(--cds-gap-xs); margin: 0; padding: 0; list-style: none; }
+.lx-pot li { display: grid; grid-template-columns: 1fr auto; gap: var(--cds-gap-sm); padding-block: 6px; border-bottom: 1px solid var(--color-border-line); font-size: var(--cds-font-size-body); }
+.lx-pot li:last-child { border-bottom: 0; }
+.lx-pot .n { font-variant-numeric: tabular-nums; font-weight: 600; }
+.lx-pot .d { grid-column: 1 / -1; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.4; margin-top: -4px; }
+.lx-tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); gap: var(--cds-gap-sm); align-items: end; }
+.lx-field { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.lx-field label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-field input, .lx-field select { width: 100%; font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-bg); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 8px 10px; min-height: 2.5rem; }
+.lx-field input:focus-visible, .lx-field select:focus-visible, .lx-btn:focus-visible, .lx-th:focus-visible, .lx-row:focus-visible { outline: 2px solid var(--cds-chart-axis); outline-offset: 2px; }
+.lx-btn { font: inherit; font-size: var(--cds-font-size-body); color: var(--color-fg); background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 8px 12px; min-height: 2.5rem; cursor: pointer; }
+.lx-btn:hover { background: var(--color-bg); }
+.lx-count { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-tablebox { max-height: 34rem; overflow: auto; border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); background: var(--color-panel); }
+.lx-table { width: 100%; border-collapse: collapse; font-size: var(--cds-font-size-body); min-width: 52rem; }
+.lx-table th { position: sticky; top: 0; background: var(--color-panel); text-align: left; padding: 0; border-bottom: 1px solid var(--color-border-line); z-index: 1; }
+.lx-th { all: unset; box-sizing: border-box; display: block; width: 100%; padding: 10px 12px; cursor: pointer; font-size: var(--cds-font-size-caption); letter-spacing: .03em; color: var(--color-fg-muted); font-weight: 600; }
+.lx-th[aria-sort=ascending]::after { content: " ↑"; }
+.lx-th[aria-sort=descending]::after { content: " ↓"; }
+.lx-table td { padding: 10px 12px; vertical-align: top; border-bottom: 1px solid var(--color-border-line); }
+.lx-row { cursor: pointer; }
+.lx-row:hover td { background: var(--color-bg); }
+.lx-row[aria-selected=true] td { background: var(--color-bg); }
+.lx-clamp { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.lx-table td.num, .lx-table th.num .lx-th { text-align: right; font-variant-numeric: tabular-nums; }
+.lx-pill { display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; }
+.lx-pill::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; background: var(--cds-chart-muted); }
+.lx-pill[data-k="Aprovado"]::before { background: var(--cds-chart-status-good, var(--color-ok)); }
+.lx-pill[data-k="Reenvio necessário"]::before { background: var(--cds-chart-status-warning, var(--color-warn)); }
+.lx-empty { padding: var(--cds-pad-lg); color: var(--color-fg-muted); font-size: var(--cds-font-size-body); }
+.lx-detail { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: flex; flex-direction: column; gap: var(--cds-gap-md); }
+.lx-detail[hidden] { display: none; }
+.lx-detail-top { display: flex; justify-content: space-between; gap: var(--cds-gap-md); align-items: flex-start; }
+.lx-detail h3 { margin: 0; font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); line-height: 1.2; overflow-wrap: anywhere; }
+.lx-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--cds-gap-md); margin: 0; }
+.lx-facts dt { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-facts dd { margin: 2px 0 0; font-size: var(--cds-font-size-body); overflow-wrap: anywhere; }
+.lx-crit { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 9rem), 1fr)); gap: var(--cds-gap-sm); }
+.lx-crit div { border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: 8px 10px; display: flex; flex-direction: column; gap: 2px; }
+.lx-crit .k { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.lx-fb { margin: 0; line-height: 1.55; max-width: 75ch; white-space: pre-line; overflow-wrap: anywhere; }
+.lx-notes { margin: 0; padding-left: 1.1rem; display: flex; flex-direction: column; gap: var(--cds-gap-xs); font-size: var(--cds-font-size-body); line-height: 1.5; max-width: 80ch; }
+.lx-notes b { font-weight: 600; }
+.lx-fail { display: flex; align-items: center; gap: 6px; color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); }
+.lx-fail::before { content: ""; width: .375rem; height: .375rem; border-radius: 50%; background: var(--color-bad); }
+[data-dash-source-state=empty] { color: transparent; }
+@media (max-width: 700px) {
+  .lx-num { font-size: 1.9rem; }
+  .lx-course { grid-template-columns: 1fr; }
+  .lx-course .meta { grid-column: 1; margin-top: 0; }
+}
+</style>
+ 
+<div class="lx-page">
+  <header class="lx-head">
+    <div class="lx-eyebrow">UniLS · Trilha de Extensão Curricular · posição em 19/10/2026</div>
+    <h1 id="titulo">Relatórios finais de extensão curricular</h1>
+    <p class="lx-take" id="resumo">
+      <b data-source="kpis" data-field="valor" data-where="metrica=aprovados">—</b> de
+      <b data-source="kpis" data-field="valor" data-where="metrica=com_nota">—</b> relatórios com nota atingiram a média mínima de 7,0
+      (<b data-source="kpis" data-field="valor" data-where="metrica=pct_aprovados">—</b>).
+      <b data-source="kpis" data-field="valor" data-where="metrica=instr_total">—</b> trazem instrumento de avaliação de impacto
+      e <b data-source="kpis" data-field="valor" data-where="metrica=nao_avaliados">—</b> envios aguardam avaliação.
+    </p>
+  </header>
+ 
+  <section class="lx-section" id="indicadores" aria-label="Indicadores gerais">
+    <div class="lx-kpis">
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Relatórios enviados</div>
+        <div class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=enviados" data-fmt="int">—</div>
+        <div class="lx-kpi-note"><span data-source="kpis" data-field="valor" data-where="metrica=titulos" data-fmt="int">—</span> projetos distintos, contando título e curso</div>
+      </div>
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Avaliados e não avaliados</div>
+        <div class="lx-pair">
+          <div><span class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=avaliados" data-fmt="int">—</span><span class="lx-pair-l">avaliados</span></div>
+          <div><span class="lx-num lx-alt" data-source="kpis" data-field="valor" data-where="metrica=nao_avaliados" data-fmt="int">—</span><span class="lx-pair-l">não avaliados</span></div>
+        </div>
+        <div class="lx-kpi-note"><span data-source="kpis" data-field="valor" data-where="metrica=com_nota" data-fmt="int">—</span> com nota; <span data-source="kpis" data-field="valor" data-where="metrica=duplicados" data-fmt="int">—</span> envio duplicado desconsiderado</div>
+      </div>
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Média das notas</div>
+        <div class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=media" data-fmt="dec2">—</div>
+        <div class="lx-kpi-note">Escala de 0,0 a 10,0, sobre os relatórios com nota</div>
+      </div>
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Com instrumento de impacto</div>
+        <div class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=instr_total" data-fmt="int">—</div>
+        <div class="lx-kpi-note"><span data-source="kpis" data-field="valor" data-where="metrica=pct_instr" data-fmt="pct">—</span> dos relatórios com nota; <span data-source="kpis" data-field="valor" data-where="metrica=instr_aplicado" data-fmt="int">—</span> com resultados apresentados</div>
+      </div>
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Aprovados</div>
+        <div class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=aprovados" data-fmt="int">—</div>
+        <div class="lx-kpi-note"><span data-source="kpis" data-field="valor" data-where="metrica=pct_aprovados" data-fmt="pct">—</span> dos relatórios com nota; <span data-source="kpis" data-field="valor" data-where="metrica=reenvio" data-fmt="int">—</span> com reenvio necessário</div>
+      </div>
+      <div class="lx-kpi">
+        <div class="lx-kpi-label">Potencial para artigo ou PIC</div>
+        <div class="lx-num" data-source="kpis" data-field="valor" data-where="metrica=pot_total" data-fmt="int">—</div>
+        <div class="lx-kpi-note">Mais <span data-source="kpis" data-field="valor" data-where="metrica=pot_condicional" data-fmt="int">—</span> com potencial condicional. Critério na seção “Como ler”</div>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="lx-section" id="graficos" aria-label="Distribuições">
+    <div class="lx-grid">
+      <div class="lx-card">
+        <div><h3>Situação final</h3><p class="lx-sub">Aprovado a partir da nota 7,0, conforme a rubrica da Trilha. Percentuais sobre os relatórios com nota.</p></div>
+        <div class="lx-seg" id="seg-sit" data-source="situacao" aria-hidden="true"></div>
+        <ul class="lx-legend" id="leg-sit" data-source="situacao"></ul>
+      </div>
+      <div class="lx-card">
+        <div><h3>Instrumento de avaliação de impacto</h3><p class="lx-sub">Relatórios com nota, segundo a presença do instrumento e dos seus resultados.</p></div>
+        <div class="lx-seg" id="seg-ins" data-source="instrumento" aria-hidden="true"></div>
+        <ul class="lx-legend" id="leg-ins" data-source="instrumento"></ul>
+      </div>
+      <div class="lx-card">
+        <div><h3>Distribuição das notas</h3><p class="lx-sub">Quantidade de relatórios por faixa de nota. Da terceira faixa em diante, aprovados.</p></div>
+        <div class="lx-hist" id="hist" data-source="faixas"></div>
+      </div>
+      <div class="lx-card">
+        <div><h3>Envios por curso</h3><p class="lx-sub">Barra clara: enviados. Barra forte: aprovados.</p></div>
+        <div class="lx-courses" id="cursos" data-source="por_curso"></div>
+      </div>
+      <div class="lx-card">
+        <div><h3>Potencial acadêmico</h3><p class="lx-sub">Triagem registrada pela avaliação e critério objetivo para os demais.</p></div>
+        <ul class="lx-pot" id="pot" data-source="potencial"></ul>
+      </div>
+    </div>
+  </section>
+ 
+  <section class="lx-section" id="relatorios" aria-label="Consulta aos relatórios">
+    <div>
+      <h2>Consulta aos relatórios</h2>
+      <p class="lx-sub">Busque pelo título do projeto. Clique em uma linha para ver os critérios e o instrumento de impacto.</p>
+    </div>
+    <div class="lx-tools">
+      <div class="lx-field"><label for="f-aluno">Nome do aluno</label><input id="f-aluno" type="search" placeholder="Ex.: Mariana Silva" autocomplete="off"></div>
+      <div class="lx-field"><label for="f-titulo">Título do projeto</label><input id="f-titulo" type="search" placeholder="Ex.: higiene das mãos" autocomplete="off"></div>
+      <div class="lx-field"><label for="f-curso">Curso</label><select id="f-curso"><option value="">Todos</option></select></div>
+      <div class="lx-field"><label for="f-sit">Situação</label><select id="f-sit"><option value="">Todas</option></select></div>
+      <div class="lx-field"><label for="f-ins">Instrumento de impacto</label><select id="f-ins"><option value="">Todos</option></select></div>
+      <div class="lx-field"><label for="f-pot">Potencial acadêmico</label><select id="f-pot"><option value="">Todos</option></select></div>
+      <div class="lx-field"><button class="lx-btn" id="f-reset" type="button">Limpar filtros</button></div>
+    </div>
+    <div class="lx-count" id="contagem" role="status" aria-live="polite"></div>
+ 
+    <div class="lx-detail" id="detalhe" hidden>
+      <div class="lx-detail-top">
+        <h3 id="d-titulo"></h3>
+        <button class="lx-btn" id="d-fechar" type="button">Fechar</button>
+      </div>
+      <dl class="lx-facts">
+        <div><dt>Estudantes</dt><dd id="d-estudantes"></dd></div>
+        <div><dt>Curso</dt><dd id="d-curso"></dd></div>
+        <div><dt>Parceiro ou local</dt><dd id="d-parceiro"></dd></div>
+        <div><dt>Enviado em</dt><dd id="d-enviado"></dd></div>
+        <div><dt>Nota</dt><dd id="d-nota"></dd></div>
+        <div><dt>Situação</dt><dd id="d-situacao"></dd></div>
+        <div><dt>Instrumento de impacto</dt><dd id="d-instrumento"></dd></div>
+        <div><dt>Potencial acadêmico</dt><dd id="d-potencial"></dd></div>
+        <div><dt>Linha na planilha</dt><dd id="d-id"></dd></div>
+      </dl>
+      <div class="lx-crit" id="d-crit"></div>
+      <div id="d-inst-wrap"><div class="lx-sub">Sobre o instrumento de impacto</div><p class="lx-fb" id="d-inst"></p></div>
+      <div id="d-fb-wrap"><div class="lx-sub">Retorno ao grupo</div><p class="lx-fb" id="d-fb"></p></div>
+    </div>
+ 
+    <div class="lx-tablebox">
+      <table class="lx-table" id="tabela" data-source="relatorios" data-row-key="id">
+        <thead><tr>
+          <th data-field="estudantes"><button class="lx-th" type="button" data-sort="estudantes">Estudantes</button></th>
+          <th data-field="titulo"><button class="lx-th" type="button" data-sort="titulo">Projeto</button></th>
+          <th data-field="curso"><button class="lx-th" type="button" data-sort="curso">Curso</button></th>
+          <th data-field="nota" class="num"><button class="lx-th" type="button" data-sort="nota">Nota</button></th>
+          <th data-field="situacao"><button class="lx-th" type="button" data-sort="situacao">Situação</button></th>
+          <th data-field="instrumento"><button class="lx-th" type="button" data-sort="instrumento">Instrumento de impacto</button></th>
+          <th data-field="potencial"><button class="lx-th" type="button" data-sort="potencial">Potencial acadêmico</button></th>
+        </tr></thead>
+        <tbody id="corpo"></tbody>
+      </table>
+    </div>
+  </section>
+ 
+  <section class="lx-section" id="como-ler" aria-label="Como ler os números">
+    <h2>Como ler os números</h2>
+    <ul class="lx-notes">
+      <li><b>Esta versão</b> não traz nomes de estudantes nem os retornos individuais da avaliação. A busca é feita pelo título do projeto.</li>
+      <li><b>Relatório enviado</b> é cada resposta ao formulário de relatório final. Reenvios do mesmo projeto aparecem em linhas separadas: os <span data-source="kpis" data-field="valor" data-where="metrica=enviados" data-fmt="int">—</span> envios correspondem a <span data-source="kpis" data-field="valor" data-where="metrica=titulos" data-fmt="int">—</span> projetos com título e curso distintos.</li>
+      <li><b>Avaliado</b> é o relatório que passou pela rubrica da Trilha. Os percentuais usam como base os relatórios com nota, sem o envio duplicado desconsiderado.</li>
+      <li><b>Aprovado</b> exige nota igual ou superior a 7,0. A nota soma os critérios da rubrica: interação dialógica, instrumento de impacto, protagonismo estudantil, DCNs, ODS, componente presencial, cronograma, evidências e coerência com o pré-projeto.</li>
+      <li><b>Instrumento de impacto</b> aplicado com resultados exige instrumento estruturado e dados apresentados de forma objetiva. Descrito sem resultados indica instrumento citado sem dados. Ausente indica nenhum instrumento estruturado.</li>
+      <li><b>Potencial para artigo ou PIC</b> reúne os projetos que a avaliação registrou como potencial alto para artigo e os que atendem ao critério objetivo da triagem: nota igual ou superior a 8,5 e instrumento aplicado com resultados. A triagem registrada pela avaliação cobre apenas os relatórios analisados por último; os demais aparecem como “Sem triagem” ou pelo critério objetivo.</li>
+      <li><b>Base normativa</b>: Resolução CNE/CES nº 7/2018 e Regulamento UniLS nº 01/2026. <b>Fonte</b>: planilha “Relatório Final - Extensão Curricular UniLS (respostas)”, aba “Respostas ao formulário 1”, mantida pela coordenação de extensão.</li>
+    </ul>
+  </section>
+</div>
+ 
+ 
+<script type="application/json" id="dados">[{"id":2,"enviado":"2026-04-18","estudantes":"","titulo":"Implementação de Controle e Mensuração de Custos Operacionais: Caso Tripack","curso":"Administração","parceiro":"Tripack","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"implementacao de controle e mensuracao de custos operacionais caso tripack|administracao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Parcialmente Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":3,"enviado":"2026-04-18","estudantes":"","titulo":"Radiologia e Humanização no Atendimento em Exames de Diagnóstico por Imagem na Atenção Básica","curso":"Radiologia","parceiro":"UNI LS educacional","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"radiologia e humanizacao no atendimento em exames de diagnostico por imagem na atencao basica|radiologia","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":4,"enviado":"2026-04-18","estudantes":"","titulo":"Implementação de Fluxo de Caixa e Projeção Financeira Operacional: Caso Tripack","curso":"Administração","parceiro":"TRIPACK","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"implementacao de fluxo de caixa e projecao financeira operacional caso tripack|administracao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Parcialmente Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":5,"enviado":"2026-04-18","estudantes":"","titulo":"Crescer saudável: educação alimentar na infância","curso":"Enfermagem","parceiro":"Instituto voz a vida","nota":7.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"crescer saudavel educacao alimentar na infancia|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":6,"enviado":"2026-04-18","estudantes":"","titulo":"Prevenção da Obesidade Infantil e do Bullying","curso":"Enfermagem","parceiro":"Escola Classe 03 de Ceilândia","nota":7.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao da obesidade infantil e do bullying|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":7,"enviado":"2026-04-18","estudantes":"","titulo":"Radiologia e Humanização no Atendimento em Exames de Diagnóstico por Imagem","curso":"Radiologia","parceiro":"Unidade Básica de Saúde Solon Correia da Silva,","nota":null,"situacao":"Duplicado (desconsiderado)","avaliado":"Sim","instrumento":"Não se aplica","potencial":"Não se aplica","chave":"radiologia e humanizacao no atendimento em exames de diagnostico por imagem|radiologia","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":8,"enviado":"2026-04-19","estudantes":"","titulo":"Higiene das mãos: Educação em saúde para crianças no ambiente escolar.","curso":"Enfermagem","parceiro":"Escola Classe 12 de Taguatinga Norte","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"higiene das maos educacao em saude para criancas no ambiente escolar|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":9,"enviado":"2026-04-19","estudantes":"","titulo":"A importância da vacinação na infância","curso":"Enfermagem","parceiro":"Escola Classe 11 de Taguatinga","nota":4.5,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"a importancia da vacinacao na infancia|enfermagem","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":10,"enviado":"2026-04-20","estudantes":"","titulo":"Humanização do Atendimento em Exames de Imagem","curso":"Radiologia","parceiro":"igrega do evangelho quadrangular","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"humanizacao do atendimento em exames de imagem|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":11,"enviado":"2026-04-21","estudantes":"","titulo":"Não Deixe Sua Vida Virar Fumaça: Conscientização sobre os Riscos do Cigarro Eletrônico e os Danos Pulmonares.","curso":"Radiologia","parceiro":"UniLs Educacional","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"nao deixe sua vida virar fumaca conscientizacao sobre os riscos do cigarro eletronico e os danos pulmonares|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":12,"enviado":"2026-04-22","estudantes":"","titulo":"Saúde no parque","curso":"Enfermagem","parceiro":"Unils","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude no parque|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":13,"enviado":"2026-04-22","estudantes":"","titulo":"Ação Social \"Alimento que Acolhe","curso":"Enfermagem","parceiro":"Estacionamento do HRT","nota":6.2,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"acao social alimento que acolhe|enfermagem","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Parcialmente Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":14,"enviado":"2026-04-23","estudantes":"","titulo":"IMAGENS RADIOLÓGICAS: História da radiologia e principais tipos de exames.","curso":"Radiologia","parceiro":"CED Incra 09 de Ceilândia.","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"imagens radiologicas historia da radiologia e principais tipos de exames|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":15,"enviado":"2026-04-23","estudantes":"","titulo":"Doação de Sangue e Prevenção da Anemia: Conscientização e Educação em Saúde","curso":"Biomedicina","parceiro":"CEM Urso Branco","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"doacao de sangue e prevencao da anemia conscientizacao e educacao em saude|biomedicina","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":16,"enviado":"2026-04-23","estudantes":"","titulo":"OSTEOPOROSE E DENSITOMETRIA ÓSSEA: Conscientização e Prevenção na Comunidade","curso":"Radiologia","parceiro":"Praça na Ceilândia","nota":7.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"osteoporose e densitometria ossea conscientizacao e prevencao na comunidade|radiologia","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":17,"enviado":"2026-04-23","estudantes":"","titulo":"Mãozinhas limpas","curso":"Enfermagem","parceiro":"Escola de Reforço Despertando o Saber, em São Domingos, Goiás","nota":7.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"maozinhas limpas|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":18,"enviado":"2026-04-23","estudantes":"","titulo":"Sistema Imunológico: o exército de defesa do corpo humano.","curso":"Biomedicina","parceiro":"CEF 20 de Ceilândia.","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"sistema imunologico o exercito de defesa do corpo humano|biomedicina","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":19,"enviado":"2026-04-24","estudantes":"","titulo":"SAÚDE DA MULHER Autocuidado Feminino: Informação que salva vidas.","curso":"Enfermagem","parceiro":"Clínica Doutor Ideal","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"saude da mulher autocuidado feminino informacao que salva vidas|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":20,"enviado":"2026-04-24","estudantes":"","titulo":"Promoção da Saúde e Prevenção do Diabetes: Ação de Verificação de Glicemia e Educação em Saúde no Parque da Cidade – DF","curso":"Enfermagem","parceiro":"Parque da Cidade Sarah Kubitschek - Brasília","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"promocao da saude e prevencao do diabetes acao de verificacao de glicemia e educacao em saude no parque da cidade df|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":21,"enviado":"2026-04-24","estudantes":"","titulo":"Prevenção contra Dengue, Zika e Chikungunya: Educação e Conscientização no Ambiente Escolar","curso":"Biomedicina","parceiro":"CEM Urso Branco","nota":8.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao contra dengue zika e chikungunya educacao e conscientizacao no ambiente escolar|biomedicina","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":22,"enviado":"2026-04-24","estudantes":"","titulo":"CAMPANHA DE DOAÇÃO DE SANGUE Conscientização e Mobilização Social em Unidade Básica de Saúde","curso":"Biomedicina","parceiro":"Unidade Básica de Saúde (UBS) n 11 de Ceilândia.","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"campanha de doacao de sangue conscientizacao e mobilizacao social em unidade basica de saude|biomedicina","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":23,"enviado":"2026-04-24","estudantes":"","titulo":"Triagem Nutricional e Avaliação por Bioimpedância","curso":"Nutrição","parceiro":"Parque de Águas Claras","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"triagem nutricional e avaliacao por bioimpedancia|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":24,"enviado":"2026-04-24","estudantes":"","titulo":"Gestão Pública do Bem-Estar Animal: Educação, Mapeamento e Adoção Responsável","curso":"Gestão Pública","parceiro":"Salão de Eventos de Condomínio Particular","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"gestao publica do bem estar animal educacao mapeamento e adocao responsavel|gestao publica","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":25,"enviado":"2026-04-25","estudantes":"","titulo":"A prevenção do câncer de mama é feito o ano todo.","curso":"Enfermagem","parceiro":"Estação de metrô Praça do Relógio, em Taguatinga (DF)","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"a prevencao do cancer de mama e feito o ano todo|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":26,"enviado":"2026-04-25","estudantes":"","titulo":"NUTRIÇÃO E O BEM-ESTAR DA MULHER","curso":"Nutrição","parceiro":"Evento privado, salão de festas do estabelecimento em Samambaia Norte.","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"nutricao e o bem estar da mulher|nutricao","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":27,"enviado":"2026-04-25","estudantes":"","titulo":"EDUCAÇÃO JURÍDICA POPULAR - Acesso aos Direitos Fundamentais","curso":"Direito","parceiro":"PARQUES PUBLICOS (Em especial, Taguapark)","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao juridica popular acesso aos direitos fundamentais|direito","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":28,"enviado":"2026-04-25","estudantes":"","titulo":"Projeto segurança e qualidade em estética e salões","curso":"Biomedicina","parceiro":"Vannyele Estética Avançada, Fotodepill e Lethicia Rodrigues Beauty.","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"projeto seguranca e qualidade em estetica e saloes|biomedicina","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":29,"enviado":"2026-04-25","estudantes":"","titulo":"Conscientização Comunitária e Prevenção da Dengue: Educação em Saúde e Mobilização Social","curso":"Biomedicina","parceiro":"taguatinga DF","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"conscientizacao comunitaria e prevencao da dengue educacao em saude e mobilizacao social|biomedicina","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":30,"enviado":"2026-04-25","estudantes":"","titulo":"Saúde e Higiene para crianças do Fundamental","curso":"Estética e Cosmética","parceiro":"Escola Classe 318","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"saude e higiene para criancas do fundamental|estetica e cosmetica","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Parcialmente Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":31,"enviado":"2026-04-26","estudantes":"","titulo":"SAÚDE PREVENTIVA E EDUCAÇÃO EM SAÚDE","curso":"Biomedicina","parceiro":"Unidade Básica de saúde (UBS), visando alcançar um publico-alvo diversificado afim de alcançar um maior resultado na comunidade escolhida.","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude preventiva e educacao em saude|biomedicina","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":32,"enviado":"2026-04-26","estudantes":"","titulo":"Mãos Limpas, Mundo Seguro: Educação em Higiene para Crianças com TEA","curso":"Enfermagem","parceiro":"Instituto Você Nunca Andará Sozinho","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"maos limpas mundo seguro educacao em higiene para criancas com tea|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":33,"enviado":"2026-04-26","estudantes":"","titulo":"Saúde do trabalhador: Ergonomia e Prevenção de Agravos Ocupacionais","curso":"Fisioterapia","parceiro":"Garagem de Auto Viação","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"saude do trabalhador ergonomia e prevencao de agravos ocupacionais|fisioterapia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":34,"enviado":"2026-04-26","estudantes":"","titulo":"TATUAGEM EM FOCO MARKETING NO ESTÚDIO DE TATUAGEM","curso":"Administração","parceiro":"Estúdio de Tatuagem - Áurea Tattoo Studio","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"tatuagem em foco marketing no estudio de tatuagem|administracao","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":35,"enviado":"2026-04-26","estudantes":"","titulo":"Espaço público como cenário de educação alimentar e promoção de saúde.","curso":"Enfermagem","parceiro":"Taguaparque","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"espaco publico como cenario de educacao alimentar e promocao de saude|enfermagem","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":36,"enviado":"2026-04-26","estudantes":"","titulo":"Infância e Emoções: Caminhos para o autoconhecimento","curso":"Psicologia","parceiro":"Instituto Associação Leão De Judá.","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"infancia e emocoes caminhos para o autoconhecimento|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":37,"enviado":"2026-04-26","estudantes":"","titulo":"SELEÇÃO E RECRUTAMENTO","curso":"Administração","parceiro":"NINE BARBEARIA","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"selecao e recrutamento|administracao","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":38,"enviado":"2026-04-26","estudantes":"","titulo":"Projeto Pinguinho Doce: Gestão e Finanças","curso":"Administração","parceiro":"Projeto Pinguinho Doce - Recanto das Emas","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"projeto pinguinho doce gestao e financas|administracao","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":39,"enviado":"2026-04-26","estudantes":"","titulo":"VIVER 60+ Rastreamento saúde 60+","curso":"Enfermagem","parceiro":"@viver60bsb projeto movimente-se viver60+ samambaia- DF 303 conjunto 03 lote 03","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"viver 60 rastreamento saude 60|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":40,"enviado":"2026-04-26","estudantes":"","titulo":"Estruturação de Metas de venda e Premiações","curso":"Administração","parceiro":"Ame Mais Farma","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"estruturacao de metas de venda e premiacoes|administracao","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":41,"enviado":"2026-04-26","estudantes":"","titulo":"PROTETOR SOLAR","curso":"Farmácia","parceiro":"Praça pública do bairro/ jardim céu azul","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"protetor solar|farmacia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":42,"enviado":"2026-04-28","estudantes":"","titulo":"Medicamentos Vencidos e o Risco Ambiental. Estratégias de Descarte.","curso":"Farmácia","parceiro":"O projeto foi desenvolvido na comunidade localizada nas proximidades da unidade da Drogasil.","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"medicamentos vencidos e o risco ambiental estrategias de descarte|farmacia","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":43,"enviado":"2026-04-27","estudantes":"","titulo":"Direitos do Consumidor e Superendividamento","curso":"Direito","parceiro":"Conselho Regional dos Técnicos Industriais da 1ª Região - CRT 01","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"direitos do consumidor e superendividamento|direito","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":44,"enviado":"2026-04-27","estudantes":"","titulo":"CONSTRUIR PRESERVANDO","curso":"Direito","parceiro":"Padilha Impermeabilizantes Ltda","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"construir preservando|direito","c1":"Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":45,"enviado":"2026-04-27","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Parque de Águas Claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":46,"enviado":"2026-04-27","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Parque águas claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":47,"enviado":"2026-04-27","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Tema: Prevenção de Doenças Dermatológicas e Condições Estéticas Relacionadas a Hábitos de Vida. Abordagens: Conscientização sobre Câncer de ","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":48,"enviado":"2026-04-27","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Parque de Águas Claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":49,"enviado":"2026-04-27","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Parque águas claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":50,"enviado":"2026-04-27","estudantes":"","titulo":"Eixão Atípico - TEA","curso":"Direito","parceiro":"Eixão Atípico","nota":4.0,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"eixao atipico tea|direito","c1":"Não Atendido","c4":"","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":51,"enviado":"2026-04-28","estudantes":"","titulo":"JUSTIÇA PARA TODOS","curso":"Direito","parceiro":"Núcleo de práticas Jurídicas UniLs - NPJ","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"justica para todos|direito","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":52,"enviado":"2026-04-28","estudantes":"","titulo":"Gestão e Finanças – Uma instituição religiosa","curso":"Administração","parceiro":"Sede nacional dos bahais","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"gestao e financas uma instituicao religiosa|administracao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":53,"enviado":"2026-04-29","estudantes":"","titulo":"Controle de Qualidade em Radiologia e Segurança do Paciente em Serviços Públicos de Saúde","curso":"Radiologia","parceiro":"Clinica vila rica","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"controle de qualidade em radiologia e seguranca do paciente em servicos publicos de saude|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":54,"enviado":"2026-04-30","estudantes":"","titulo":"Osteoporose Prevenção para Crianças e Jovens","curso":"Radiologia","parceiro":"Rede de Ensino Certo Ceilândia Norte","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"osteoporose prevencao para criancas e jovens|radiologia","c1":"","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":55,"enviado":"2026-04-30","estudantes":"","titulo":"CONTROLE DE QUALIDADE EM RADIOLOGIA E SEGURANÇA DO PACIENTE EM SERVIÇOS PÚBLICOS DE SAÚDE","curso":"Radiologia","parceiro":"CLINICA VILA RICA","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"controle de qualidade em radiologia e seguranca do paciente em servicos publicos de saude|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":56,"enviado":"2026-05-02","estudantes":"","titulo":"Cuidado Integral em Saúde Comunitária: Assistência Humanizada e Promoção do Autocuidado","curso":"Enfermagem","parceiro":"Ubs 4 de Samambaia","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"cuidado integral em saude comunitaria assistencia humanizada e promocao do autocuidado|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":57,"enviado":"2026-05-02","estudantes":"","titulo":"ITU: Conscientização em saúde do sistema urinário.","curso":"Enfermagem","parceiro":"Lar de idosos Plenitude","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"itu conscientizacao em saude do sistema urinario|enfermagem","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":58,"enviado":"2026-05-06","estudantes":"","titulo":"DESCARTE SEGURO DE MEDICAMENTOS E RESÍDUOS : UMA ABORDAGEM EM BIOMEDICINA E SAÚDE AMBIENTAL","curso":"Biomedicina","parceiro":"UBS 12 samambaia","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"descarte seguro de medicamentos e residuos uma abordagem em biomedicina e saude ambiental|biomedicina","c1":"","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":59,"enviado":"2026-05-07","estudantes":"","titulo":"Educação em Saúde da Mulher: uma abordagem de enfermagem no ambiente comunitário","curso":"Enfermagem","parceiro":"Clinica no qual eu trabalho","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao em saude da mulher uma abordagem de enfermagem no ambiente comunitario|enfermagem","c1":"Atendido","c4":"","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":60,"enviado":"2026-05-07","estudantes":"","titulo":"Saúde do Couro Cabeludo: Educação e Prevenção","curso":"Biomedicina","parceiro":"Instituto Casa de Gerações - Ceilândia Norte","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude do couro cabeludo educacao e prevencao|biomedicina","c1":"Atendido","c4":"","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":61,"enviado":"2026-05-11","estudantes":"","titulo":"Higiene das mãos (no ramo hospitalar)","curso":"Enfermagem","parceiro":"Afya hospital dia","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"higiene das maos no ramo hospitalar|enfermagem","c1":"Atendido","c4":"","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":62,"enviado":"2026-05-11","estudantes":"","titulo":"Tema: Prevenção de Doenças Dermatológicas e Condições Estéticas Relacionadas a Hábitos de Vida.","curso":"Estética e Cosmética","parceiro":"Parque de Águas claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"tema prevencao de doencas dermatologicas e condicoes esteticas relacionadas a habitos de vida|estetica e cosmetica","c1":"","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":63,"enviado":"2026-05-11","estudantes":"","titulo":"PREVENÇÃO DE DOENÇAS DERMATOLÓGICAS E CUIDADOS ESTÉTICOS DA PELE RELACIONADOS AOS HÁBITOS DE VIDA","curso":"Estética e Cosmética","parceiro":"Parque de águas claras","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"prevencao de doencas dermatologicas e cuidados esteticos da pele relacionados aos habitos de vida|estetica e cosmetica","c1":"","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":64,"enviado":"2026-05-12","estudantes":"","titulo":"DESCARTE CONSCIENTE DE RESÍDUOS FARMACÊUTICOS E BIOLÓGICOS DOMÉSTICOS","curso":"Biomedicina","parceiro":"UBS 12 Samambaia Norte","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"descarte consciente de residuos farmaceuticos e biologicos domesticos|biomedicina","c1":"Atendido","c4":"","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":65,"enviado":"2026-05-12","estudantes":"","titulo":"OUTUBRO ROSA O ANO TODO: Saúde da mulher na prevenção, autocuidado e promoção da saúde.","curso":"Enfermagem","parceiro":"UBS - Recanto das Emas","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"outubro rosa o ano todo saude da mulher na prevencao autocuidado e promocao da saude|enfermagem","c1":"","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":66,"enviado":"2026-05-13","estudantes":"","titulo":"A importância da vacinação infantil","curso":"Enfermagem","parceiro":"Escola Classe 11 Taguatinga","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"a importancia da vacinacao infantil|enfermagem","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":67,"enviado":"2026-05-13","estudantes":"","titulo":"Sustentabilidade e Logística Reversa de Descarte Consciente de Resíduos da Indústria Cosmética.","curso":"Estética e Cosmética","parceiro":"Parque águas claras","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"sustentabilidade e logistica reversa de descarte consciente de residuos da industria cosmetica|estetica e cosmetica","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":68,"enviado":"2026-05-13","estudantes":"","titulo":"OFICINA DAS EMOÇÕES","curso":"Psicologia","parceiro":"Centro Social Santo Aníbal SRIA II (Polo de Moda) lote 02 - Guará, Brasília - DF, 71070-520","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"oficina das emocoes|psicologia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":69,"enviado":"2026-05-14","estudantes":"","titulo":"Artes Marciais como ferramenta de promoção da saúde mental para jovens em situação de vulnerabilidade social","curso":"Psicologia","parceiro":"Boaz escola de artes marciais 22026.1","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"artes marciais como ferramenta de promocao da saude mental para jovens em situacao de vulnerabilidade social|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":70,"enviado":"2026-05-14","estudantes":"","titulo":"Saúde e Trabalho - Formação em uso de EPIs","curso":"Enfermagem","parceiro":"Casa Afecto","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude e trabalho formacao em uso de epis|enfermagem","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":71,"enviado":"2026-05-15","estudantes":"","titulo":"Pascoa do cuidado; Educação em saúde para crianças","curso":"Enfermagem","parceiro":"casa institucional cantinho do ceu.","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"pascoa do cuidado educacao em saude para criancas|enfermagem","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":72,"enviado":"2026-05-25","estudantes":"","titulo":"Saúde em foco","curso":"Farmácia","parceiro":"Condomínio em samambaia","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude em foco|farmacia","c1":"Atendido","c4":"","c5":"","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":73,"enviado":"2026-05-26","estudantes":"","titulo":"Doenças Sazonais e o uso de exames de imagem para diagnostico: Raio-X,Tomografia e o principio de ALARA.","curso":"Enfermagem","parceiro":"O Centro de Ensino Médio 619 localizada na Samambaia Norte.","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"doencas sazonais e o uso de exames de imagem para diagnostico raio x tomografia e o principio de alara|enfermagem","c1":"Atendido","c4":"Atendido","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":74,"enviado":"2026-05-27","estudantes":"","titulo":"Descarte consciente de resíduos biológicos e farmacêuticos","curso":"Biomedicina","parceiro":"UBS 06 taguatinga","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"descarte consciente de residuos biologicos e farmaceuticos|biomedicina","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":75,"enviado":"2026-05-31","estudantes":"","titulo":"Missão Prato Colorido:","curso":"Farmácia","parceiro":"Escola Meu Primeiro Espaço, localizada em Águas Claras","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"missao prato colorido|farmacia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":76,"enviado":"2026-06-01","estudantes":"","titulo":"Cuidado e bem-estar: Orientações de autocuidado e saúde da pele","curso":"Estética e Cosmética","parceiro":"no meu trabalho","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"cuidado e bem estar orientacoes de autocuidado e saude da pele|estetica e cosmetica","c1":"Atendido","c4":"","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":77,"enviado":"2026-06-02","estudantes":"","titulo":"Projeto Cores e sabores: alimentação saudável na melhor idade","curso":"Nutrição","parceiro":"Vida Reviver Lar para idosos","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"projeto cores e sabores alimentacao saudavel na melhor idade|nutricao","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":78,"enviado":"2026-06-05","estudantes":"","titulo":"Incentivo à Atividade Física e Prevenção da Obesidade","curso":"Enfermagem","parceiro":"Parque águas claras","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"incentivo a atividade fisica e prevencao da obesidade|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":79,"enviado":"2026-06-05","estudantes":"","titulo":"Consultoria em Controles Financeiros Básicos","curso":"Ciências Contábeis","parceiro":"DAEXE Assessoria Executiva","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"consultoria em controles financeiros basicos|ciencias contabeis","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":80,"enviado":"2026-06-07","estudantes":"","titulo":"Conscientização sobre a Doação de Sangue: Um Ato que Salva Vidas","curso":"Biomedicina","parceiro":"Força Jovem Universal- Igreja Universal do Reino de Deus","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"conscientizacao sobre a doacao de sangue um ato que salva vidas|biomedicina","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":81,"enviado":"2026-06-08","estudantes":"","titulo":"Educação em saúde materno - infantil: oficinas participativas sobre método canguru e cuidados neonatais em unidade hospitalar","curso":"Enfermagem","parceiro":"Hospital Regional de Taguatinga - (HRT)","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao em saude materno infantil oficinas participativas sobre metodo canguru e cuidados neonatais em unidade hospitalar|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":82,"enviado":"2026-06-08","estudantes":"","titulo":"Avaliação nutricional clube portuguesa Infantil","curso":"Nutrição","parceiro":"Clube portuguesa","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"avaliacao nutricional clube portuguesa infantil|nutricao","c1":"Atendido","c4":"","c5":"","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":83,"enviado":"2026-06-09","estudantes":"","titulo":"Cuidado Fisioterapêutico na Gestação e Pós-Parto: Educação em Saúde para Mulheres na Atenção Primária","curso":"Fisioterapia","parceiro":"HRSAM","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"cuidado fisioterapeutico na gestacao e pos parto educacao em saude para mulheres na atencao primaria|fisioterapia","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":84,"enviado":"2026-06-10","estudantes":"","titulo":"EDUCAÇÃO SEXUAL PARA JOVENS: Informação, prevenção e autocuidado","curso":"Enfermagem","parceiro":"Instituto Federal de Brasilia - Campus Ceilândia","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"educacao sexual para jovens informacao prevencao e autocuidado|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":85,"enviado":"2026-06-11","estudantes":"","titulo":"Orientações de Infecção Sexualmente Transmissíveis","curso":"Enfermagem","parceiro":"PREVFOGO (IBAMA)","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"orientacoes de infeccao sexualmente transmissiveis|enfermagem","c1":"Atendido","c4":"","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":86,"enviado":"2026-06-11","estudantes":"","titulo":"Câncer de Mama","curso":"Enfermagem","parceiro":"CRAS Samambaia sul 317","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"cancer de mama|enfermagem","c1":"","c4":"","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":87,"enviado":"2026-06-11","estudantes":"","titulo":"Conscientização sobre a Doação de Sangue: Um Ato que Salva Vidas","curso":"Biomedicina","parceiro":"Força Jovem Universal- Igreja Universal do Reino de Deus","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"conscientizacao sobre a doacao de sangue um ato que salva vidas|biomedicina","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":88,"enviado":"2026-06-11","estudantes":"","titulo":"Conscientização sobre a Doação de Sangue: Um Ato que Salva Vidas","curso":"Biomedicina","parceiro":"Força Jovem Universal- Igreja Universal do Reino de Deus","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"conscientizacao sobre a doacao de sangue um ato que salva vidas|biomedicina","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":89,"enviado":"2026-06-11","estudantes":"","titulo":"Conscientização sobre a Doação de Sangue: Um Ato que Salva Vidas","curso":"Biomedicina","parceiro":"Igreja Unicersal do Reino de Deus Ceilândia Centro- Força Jovem Universal","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"conscientizacao sobre a doacao de sangue um ato que salva vidas|biomedicina","c1":"Atendido","c4":"","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":90,"enviado":"2026-06-18","estudantes":"","titulo":"Família Financeiramente Saudável: Educação Financeira e Planejamento do Orçamento Familiar,","curso":"Administração","parceiro":"CASA DA SOPA","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"familia financeiramente saudavel educacao financeira e planejamento do orcamento familiar|administracao","c1":"Atendido","c4":"","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":91,"enviado":"2026-06-18","estudantes":"","titulo":"CIDADANIA E FUTURO - Educação Financeira para Crianças e Jovens de Samambaia Sul","curso":"Administração","parceiro":"Casa da Sopa","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"cidadania e futuro educacao financeira para criancas e jovens de samambaia sul|administracao","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":92,"enviado":"2026-06-19","estudantes":"","titulo":"Vape não é brincadeira: conscientização sobre cigarros eletrônico e proteção dos adolescentes pelo ECA","curso":"Biomedicina","parceiro":"CEMAB","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"vape nao e brincadeira conscientizacao sobre cigarros eletronico e protecao dos adolescentes pelo eca|biomedicina","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":93,"enviado":"2026-06-20","estudantes":"","titulo":"Promoção da Saúde e do Bem-Estar da Pessoa Idosa: Estratégias para um Envelhecimento Saudável, Ativo e Humanizado","curso":"Enfermagem","parceiro":"Instituto Sandra Pereira. O endereço de sua sede está localizada na Quadra 33 Lote 677, 677 - Chacaras Quedas do Descoberto, Aguas Lindas de","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"promocao da saude e do bem estar da pessoa idosa estrategias para um envelhecimento saudavel ativo e humanizado|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":94,"enviado":"2026-06-20","estudantes":"","titulo":"Saúde Mental na Igreja: Conscientização, Acolhimento e Qualidade de Vida","curso":"Enfermagem","parceiro":"Igreja Assembleia de Deus CIMADSETA","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude mental na igreja conscientizacao acolhimento e qualidade de vida|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":95,"enviado":"2026-06-23","estudantes":"","titulo":"Eixão atípico","curso":"Direito","parceiro":"Eixão atípico","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"eixao atipico|direito","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":96,"enviado":"2026-06-25","estudantes":"","titulo":"EDUCAÇÃO FINANCEIRA PARA MICROEMPREENDEDORES: ORGANIZAÇÃO E SUSTENTABILIDADE DOS NEGÓCIOS","curso":"Ciências Contábeis","parceiro":"Daexe Assessoria Executiva LTDA","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao financeira para microempreendedores organizacao e sustentabilidade dos negocios|ciencias contabeis","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":97,"enviado":"2026-06-26","estudantes":"","titulo":"Projeto Viver com sentido","curso":"Psicologia","parceiro":"Viver 60+","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"projeto viver com sentido|psicologia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":98,"enviado":"2026-06-28","estudantes":"","titulo":"Direitos Humanos e saúde mental: construindo relações baseadas no respeito.","curso":"Psicologia","parceiro":"Escola Classe 59 da Ceilândia","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"direitos humanos e saude mental construindo relacoes baseadas no respeito|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":99,"enviado":"2026-06-28","estudantes":"","titulo":"Promoção da Convivência e do Trabalho em Equipe entre Estudantes da Educação de Jovens e Adultos","curso":"Psicologia","parceiro":"CED 02 de Taguatinga (Centrão)","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"promocao da convivencia e do trabalho em equipe entre estudantes da educacao de jovens e adultos|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":100,"enviado":"2026-06-29","estudantes":"","titulo":"Informatização e Otimização Administrativa no Terceiro Setor","curso":"Administração","parceiro":"Centro Comunitário Luisa de Marillac","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"informatizacao e otimizacao administrativa no terceiro setor|administracao","c1":"","c4":"Atendido","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":101,"enviado":"2026-06-30","estudantes":"","titulo":"COSMETOLOGIA CONSCIENTE Segurança, Sustentabilidade e Direitos do Consumidor","curso":"Estética e Cosmética","parceiro":"CBMDF","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"cosmetologia consciente seguranca sustentabilidade e direitos do consumidor|estetica e cosmetica","c1":"Atendido","c4":"Atendido","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":102,"enviado":"2026-06-30","estudantes":"","titulo":"Biossegurança e Saúde do Trabalhador Mapeamento de Riscos Ocupacionais na Produção Artesanal de Kits de Higiene em Crochê","curso":"Enfermagem","parceiro":"Mimos da May","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"biosseguranca e saude do trabalhador mapeamento de riscos ocupacionais na producao artesanal de kits de higiene em croche|enfermagem","c1":"Atendido","c4":"","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":103,"enviado":"2026-07-02","estudantes":"","titulo":"PROJETO DE INTERVENÇÃO: JOGO “TAMO JUNTO","curso":"Psicologia","parceiro":"Centro Educacional 02 de Taguatinga (Centrão)","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"projeto de intervencao jogo tamo junto|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":104,"enviado":"2026-07-03","estudantes":"","titulo":"De olho na pressão e glicemia!","curso":"Enfermagem","parceiro":"Praça do Bicalho (Taguatinga Norte) e em uma farmácia parceira.","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"de olho na pressao e glicemia|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":105,"enviado":"2026-07-03","estudantes":"","titulo":"Nutrição e Educação Alimentar","curso":"Enfermagem","parceiro":"Escola Classe 03 de Ceilândia","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"nutricao e educacao alimentar|enfermagem","c1":"Atendido","c4":"Atendido","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":106,"enviado":"2026-07-03","estudantes":"","titulo":"Alimentação in natura vs Ultraprocessados","curso":"Nutrição","parceiro":"CENTRO DE CONVIVÊNCIA DO IDOSO","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"alimentacao in natura vs ultraprocessados|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":107,"enviado":"2026-07-03","estudantes":"","titulo":"Alimentação: In natura vs Ultraprocessados. Educação alimentar para funcionários da academia Recanto das Emas.","curso":"Nutrição","parceiro":"ACADEMIA KONCEPT","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"alimentacao in natura vs ultraprocessados educacao alimentar para funcionarios da academia recanto das emas|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":108,"enviado":"2026-07-03","estudantes":"","titulo":"Promoção da saúde infantil por meio da educação em higiene pessoal","curso":"Enfermagem","parceiro":"Maria Madalena Cantalice de Souza Monteiro","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"promocao da saude infantil por meio da educacao em higiene pessoal|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":109,"enviado":"2026-07-03","estudantes":"","titulo":"SAÚDE RESPIRATÓRIA: PREVENÇÃO E EDUCAÇÃO COM CRIANÇAS E IDOSOS Promover a saúde respiratória e prevenir agravos pulmonares em populações vulneráveis","curso":"Fisioterapia","parceiro":"Clínica de fisioterapia","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"saude respiratoria prevencao e educacao com criancas e idosos promover a saude respiratoria e prevenir agravos pulmonares em populacoes vulneraveis|fisioterapia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":110,"enviado":"2026-07-03","estudantes":"","titulo":"Toque de Cuidado : Conscientização sobre a Mamografia","curso":"Radiologia","parceiro":"Igreja Evangélica Nova Jerusalém- Aguas Lindas de Goiás","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"toque de cuidado conscientizacao sobre a mamografia|radiologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":111,"enviado":"2026-07-03","estudantes":"","titulo":"Raízes do futuro: Plantas medicinais na educação infantil","curso":"Farmácia","parceiro":"Escola Classe 15 de Taguatinga","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"raizes do futuro plantas medicinais na educacao infantil|farmacia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":112,"enviado":"2026-07-03","estudantes":"","titulo":"Mais vida, mais saúde","curso":"Farmácia","parceiro":"Andréia Apolinário de Matos ( Drogaria mais saúde)","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"mais vida mais saude|farmacia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":113,"enviado":"2026-07-03","estudantes":"","titulo":"Viver com Memória: Grupo de Convivência e Fortalecimento de Vínculos para a Terceira Idade","curso":"Psicologia","parceiro":"Instituto Lar dos Velhinhos Maria Madalena (ILPI)","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"viver com memoria grupo de convivencia e fortalecimento de vinculos para a terceira idade|psicologia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":114,"enviado":"2026-07-03","estudantes":"","titulo":"TEIA DA CONVIVÊNCIA- Fortalecendo o respeito e as relações interpessoais na EJA","curso":"Psicologia","parceiro":"Centro Educacional 02 - EJA","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"teia da convivencia fortalecendo o respeito e as relacoes interpessoais na eja|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":115,"enviado":"2026-07-03","estudantes":"","titulo":"FORÇA NATURAL - Pré-treinos naturais, energia, performance para adultos e jovens da Agon Academia de Lutas.","curso":"Nutrição","parceiro":"Agon Academia de Lutas.","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"forca natural pre treinos naturais energia performance para adultos e jovens da agon academia de lutas|nutricao","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":116,"enviado":"2026-07-04","estudantes":"","titulo":"NOSSAS EMOÇÕES - Convivência Escolar e Educação Emocional no Colégio Anchieta","curso":"Psicologia","parceiro":"Colégio Anchieta","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"nossas emocoes convivencia escolar e educacao emocional no colegio anchieta|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":117,"enviado":"2026-07-06","estudantes":"","titulo":"CONHECER PARA PROTEGER","curso":"Direito","parceiro":"CEF 11 - Ensino Fundamental - EQNN 24/26, Ceilândia, Brasília/DF","nota":8.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo/PIC, critério objetivo","chave":"conhecer para proteger|direito","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":118,"enviado":"2026-07-06","estudantes":"","titulo":"Fisioterapia na comunidade","curso":"Fisioterapia","parceiro":"Fehsolna","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"fisioterapia na comunidade|fisioterapia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":119,"enviado":"2026-07-07","estudantes":"","titulo":"DO PALCO DAS EMOÇÕES AO MEU JEITO DE SER: Caminhos lúdicos para o autoconhecimento, a convivência e a autorregulação emocional na infância.","curso":"Psicologia","parceiro":"Casa Azul Felipe Augusto (Unidade Samambaia Sul) QN 315 Conjunto F Lotes 1/4 - Samambaia Sul, Brasília - DF, CEP: 72307-406. Telefone: (61) ","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"do palco das emocoes ao meu jeito de ser caminhos ludicos para o autoconhecimento a convivencia e a autorregulacao emocional na infancia|psicologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":120,"enviado":"2026-07-09","estudantes":"","titulo":"CONHECER PARA PROTEGER","curso":"Direito","parceiro":"CEF 11 - Ensino Fundamental - EQNN 24/26, Ceilândia, Brasília/DF","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"conhecer para proteger|direito","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":121,"enviado":"2026-07-09","estudantes":"","titulo":"Essência do Sorriso","curso":"Odontologia","parceiro":"Capela Divina Misericórdia","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"essencia do sorriso|odontologia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":122,"enviado":"2026-07-10","estudantes":"","titulo":"Essência do Sorriso","curso":"Odontologia","parceiro":"Paróquia Divina Misericórdia","nota":7.1,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"essencia do sorriso|odontologia","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":123,"enviado":"2026-07-10","estudantes":"","titulo":"Educação em Saúde sobre Desengasgo e Primeiros Socorros","curso":"Enfermagem","parceiro":"Associação Maria De Nazaré","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao em saude sobre desengasgo e primeiros socorros|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":124,"enviado":"2026-07-11","estudantes":"","titulo":"Educação em Saúde comunitária","curso":"Enfermagem","parceiro":"Parque de águas claras","nota":7.4,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"educacao em saude comunitaria|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":125,"enviado":"2026-07-13","estudantes":"","titulo":"Impactos do alcoolismo em pessoas com diabetes e hipertensão","curso":"Enfermagem","parceiro":"Vida de A.A","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"impactos do alcoolismo em pessoas com diabetes e hipertensao|enfermagem","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":126,"enviado":"2026-07-15","estudantes":"","titulo":"Conhecendo o Exame Radiológico de Mamografia e sua importância no combate ao câncer de mama.","curso":"Radiologia","parceiro":"Atacadão SA","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"conhecendo o exame radiologico de mamografia e sua importancia no combate ao cancer de mama|radiologia","c1":"Atendido","c4":"","c5":"","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":127,"enviado":"2026-07-24","estudantes":"","titulo":"Minha mandala, minha história","curso":"Terapia Ocupacional","parceiro":"Associação São Vicente De Paulo- Lar dos velhinhos","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"minha mandala minha historia|terapia ocupacional","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":128,"enviado":"2026-08-06","estudantes":"","titulo":"Promoção da Saúde e Monitorização dos Sinais Vitais em Adultos da Comunidade de Samambaia-DF","curso":"Enfermagem","parceiro":"Drogaria Messias - Comunidade de Samambaia-DF","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"promocao da saude e monitorizacao dos sinais vitais em adultos da comunidade de samambaia df|enfermagem","c1":"","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":129,"enviado":"2026-08-06","estudantes":"","titulo":"Promoção da Saúde e Monitorização dos Sinais Vitais em Adultos da Comunidade de Samambaia-DF","curso":"Enfermagem","parceiro":"Drogaria Messias - Comunidade de Samambaia-DF","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Sem triagem","chave":"promocao da saude e monitorizacao dos sinais vitais em adultos da comunidade de samambaia df|enfermagem","c1":"","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":130,"enviado":"2026-08-07","estudantes":"","titulo":"MÃOS LIMPAS, SAÚDE EM DIA.","curso":"Enfermagem","parceiro":"PARQUE ECOLÓGICO DE ÁGUAS CLARAS","nota":7.9,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"maos limpas saude em dia|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":131,"enviado":"2026-08-12","estudantes":"","titulo":"COSMETOLOGIA CONSCIENTE: Segurança, Sustentabilidade e Direitos do Consumidor","curso":"Estética e Cosmética","parceiro":"Clínica de estética","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Sem triagem","chave":"cosmetologia consciente seguranca sustentabilidade e direitos do consumidor|estetica e cosmetica","c1":"Atendido","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":132,"enviado":"2026-08-15","estudantes":"","titulo":"Nutrição infantil: Intervenções lúdicas em Educação Alimentar e Nutricional para crianças na pré-escolares.","curso":"Nutrição","parceiro":"Escola anjo da guarda","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"nutricao infantil intervencoes ludicas em educacao alimentar e nutricional para criancas na pre escolares|nutricao","c1":"","c4":"","c5":"","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":133,"enviado":"2026-08-22","estudantes":"","titulo":"Enfermagem em movimento","curso":"Enfermagem","parceiro":"Estúdio Inspilates","nota":6.7,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Sem triagem","chave":"enfermagem em movimento|enfermagem","c1":"","c4":"Atendido","c5":"","c6":"","c7":"Atendido","c8":"","detalhe_instrumento":"","feedback":""},{"id":134,"enviado":"2026-08-26","estudantes":"","titulo":"POSTURA EM AÇÃO : ERGONOMIA E PREVENÇÃO DE DORES NO AMBIENTE DE TRABALHO.","curso":"Fisioterapia","parceiro":"GEAP SAÚDE","nota":9.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Aplicado, com resultados","potencial":"Artigo, potencial alto","chave":"postura em acao ergonomia e prevencao de dores no ambiente de trabalho|fisioterapia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":135,"enviado":"2026-08-28","estudantes":"","titulo":"Lavagem das Garrafas de água e sua importância para a prevenção de doenças transmissíveis.","curso":"Enfermagem","parceiro":"Centro de Educação Infantil 11 de Taguatinga.","nota":7.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"lavagem das garrafas de agua e sua importancia para a prevencao de doencas transmissiveis|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":136,"enviado":"2026-08-28","estudantes":"","titulo":"SAÚDE BUCAL DA CRIANÇA, DO ADOLESCENTE E ODONTOPEDIATRIA PREVENTIVA","curso":"Odontologia","parceiro":"Centro de Projetos e Assistência Integral (CEPAI)","nota":8.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"saude bucal da crianca do adolescente e odontopediatria preventiva|odontologia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":137,"enviado":"2026-08-29","estudantes":"","titulo":"Agosto Dourado - Promovendo a Amamentação","curso":"Enfermagem","parceiro":"Estúdio de Fotografia - Elo Materno","nota":7.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Não indicado","chave":"agosto dourado promovendo a amamentacao|enfermagem","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":138,"enviado":"2026-08-30","estudantes":"","titulo":"Usa Racional de medicamentos","curso":"Farmácia","parceiro":"UBS Santa Maria DF","nota":7.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"usa racional de medicamentos|farmacia","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":139,"enviado":"2026-09-06","estudantes":"","titulo":"Além do procedimento","curso":"Nutrição","parceiro":"Clinharmo (clínica de estética)","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"alem do procedimento|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":140,"enviado":"2026-09-06","estudantes":"","titulo":"DIAGNÓSTICO DE GESTÃO E PLANO DE AÇÃO PARA UM SERVIÇO DE ALIMENTAÇÃO","curso":"Nutrição","parceiro":"Oeste Espetos","nota":8.2,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"diagnostico de gestao e plano de acao para um servico de alimentacao|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":141,"enviado":"2026-09-10","estudantes":"","titulo":"HIGIENE DAS MÃOS NA EDUCAÇÃO INFANTIL","curso":"Enfermagem","parceiro":"Escola Classe Vila Basevi - Df 001 Km 6 Vila Basevi - Nr Lago Oeste - Sobradinho II, Brasília - DF, 73007-991","nota":4.8,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"higiene das maos na educacao infantil|enfermagem","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Não Atendido","c6":"Parcialmente Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":142,"enviado":"2026-09-11","estudantes":"","titulo":"RECOVERY PARA ATLETAS DE VÔLEI","curso":"Fisioterapia","parceiro":"Escola Centro de Ensino em Período Integral Montes Claros.","nota":8.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"recovery para atletas de volei|fisioterapia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":143,"enviado":"2026-09-15","estudantes":"","titulo":"Qualidade de Vida no Trabalho: Impactos no Bem-Estar e na Produtividade dos Colaboradores","curso":"Administração","parceiro":"Supermercado Tatico – Vicente Pires","nota":7.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"qualidade de vida no trabalho impactos no bem estar e na produtividade dos colaboradores|administracao","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Parcialmente Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":144,"enviado":"2026-09-21","estudantes":"","titulo":"Pele Consciente","curso":"Farmácia","parceiro":"Petit Cake Doceria","nota":8.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"pele consciente|farmacia","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":145,"enviado":"2026-09-25","estudantes":"","titulo":"EDUCAÇÃO FINANCEIRA NO ENSINO ESCOLAR: PREPARANDO PARA A VIDA REAL","curso":"Administração","parceiro":"CEF 05 TAGUATINGA SUL","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"educacao financeira no ensino escolar preparando para a vida real|administracao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":146,"enviado":"2026-09-26","estudantes":"","titulo":"SABOR QUE ENSINA: Alimentação, Educação e Higiene","curso":"Nutrição","parceiro":"Céu das Artes-Recanto das Emas","nota":6.5,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"sabor que ensina alimentacao educacao e higiene|nutricao","c1":"Parcialmente Atendido","c4":"Parcialmente Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":147,"enviado":"2026-09-27","estudantes":"","titulo":"Setembro Amarelo no Sistema Prisional: Saúde Mental, Valorização da Vida e Fortalecimento das Redes de Apoio","curso":"Enfermagem","parceiro":"Unidade Prisional de Valparaíso","nota":8.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"setembro amarelo no sistema prisional saude mental valorizacao da vida e fortalecimento das redes de apoio|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":148,"enviado":"2026-09-27","estudantes":"","titulo":"Boas Práticas de Manipulação de Alimentos e Segurança Sanitária","curso":"Nutrição","parceiro":"restaurante Sabor Capital, localizado no Ministério de Minas e Energia, em Brasília-DF,","nota":8.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"boas praticas de manipulacao de alimentos e seguranca sanitaria|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":149,"enviado":"2026-09-28","estudantes":"","titulo":"Saúde do Idoso: Cuidar, Prevenir e Viver com Qualidade","curso":"Enfermagem","parceiro":"Drogaria Sagrada Família","nota":8.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"saude do idoso cuidar prevenir e viver com qualidade|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":150,"enviado":"2026-10-01","estudantes":"","titulo":"SUPER-HERÓIS DA SAÚDE: HIGIENIZAÇÃO DAS MÃOS E ALIMENTAÇÃO SAUDÁVEL NA INFÂNCIA","curso":"Enfermagem","parceiro":"Associação Maria de Nazaré- Samabaia Norte.","nota":9.0,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"super herois da saude higienizacao das maos e alimentacao saudavel na infancia|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":151,"enviado":"2026-10-01","estudantes":"","titulo":"O perigo dos “remédios para emagrecer” — riscos da automedicação.","curso":"Farmácia","parceiro":"espaço público","nota":7.3,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Não indicado","chave":"o perigo dos remedios para emagrecer riscos da automedicacao|farmacia","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Parcialmente Atendido","c7":"Parcialmente Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":152,"enviado":"2026-10-04","estudantes":"","titulo":"Prevenção da Hipertensão Arterial e Promoção da Saúde Cardiovascular na Comunidade Religiosa","curso":"Enfermagem","parceiro":"Igreja assembelia de Deus","nota":8.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"prevencao da hipertensao arterial e promocao da saude cardiovascular na comunidade religiosa|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":153,"enviado":"2026-10-05","estudantes":"","titulo":"SAÚDE NO TRABALHO POSTURA, MOVIMENTO E BEM-ESTAR","curso":"Fisioterapia","parceiro":"OMODA JAECOO","nota":6.9,"situacao":"Reenvio necessário","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Não indicado","chave":"saude no trabalho postura movimento e bem estar|fisioterapia","c1":"Parcialmente Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":154,"enviado":"2026-10-05","estudantes":"","titulo":"O QUE EXISTE POR TRÁS DO PRATO? MINIMERCADO SAUDÁVEL: EDUCAÇÃO ALIMENTAR E NUTRICIONAL NA INFÂNCIA ATRAVÉS DA SIMULAÇÃO DE COMPRAS","curso":"Nutrição","parceiro":"Colégio 604 da Samambaia , Brasília - DF","nota":8.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Descrito, sem resultados","potencial":"Potencial condicional","chave":"o que existe por tras do prato minimercado saudavel educacao alimentar e nutricional na infancia atraves da simulacao de compras|nutricao","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":155,"enviado":"2026-10-08","estudantes":"","titulo":"Prevenção à saúde bocal em crianças 04 a 11 anos .","curso":"Enfermagem","parceiro":"Spa do aprendiz/ clube da portuguesa","nota":7.7,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"prevencao a saude bocal em criancas 04 a 11 anos|enfermagem","c1":"Atendido","c4":"Atendido","c5":"Atendido","c6":"Atendido","c7":"Atendido","c8":"Parcialmente Atendido","detalhe_instrumento":"","feedback":""},{"id":156,"enviado":"2026-10-08","estudantes":"","titulo":"DIREITO DA CRIANÇA E DO ADOLESCENTE (ECA) E PROTEÇÃO INTEGRAL","curso":"Direito","parceiro":"Centro de Ensino Médio 05 de Taguatinga, localizado na QNJ 56, Área Especial 16, Taguatinga – DF.","nota":7.5,"situacao":"Aprovado","avaliado":"Sim","instrumento":"Ausente","potencial":"Não indicado","chave":"direito da crianca e do adolescente eca e protecao integral|direito","c1":"Atendido","c4":"Atendido","c5":"Parcialmente Atendido","c6":"Atendido","c7":"Atendido","c8":"Atendido","detalhe_instrumento":"","feedback":""},{"id":157,"enviado":"2026-10-15","estudantes":"","titulo":"FARMACOVIGILÂNCIA COMUNITÁRIA E SEGURANÇA DO PACIENTE: AÇÕES PREVENTIVAS, USO SEGURO E DESCARTE RESPONSÁVEL DE MEDICAMENTOS.","curso":"Farmácia","parceiro":"Igreja Ministerio Pentecostal Vida Eterna","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"farmacovigilancia comunitaria e seguranca do paciente acoes preventivas uso seguro e descarte responsavel de medicamentos|farmacia","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":158,"enviado":"2026-10-15","estudantes":"","titulo":"Projeto Adolescência Saudável na Era Digital: Alimentação, Prevenção, Autocuidado e Uso Seguro de Medicamentos","curso":"Biomedicina","parceiro":"Cemeit Taguatinga","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"projeto adolescencia saudavel na era digital alimentacao prevencao autocuidado e uso seguro de medicamentos|biomedicina","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":159,"enviado":"2026-10-17","estudantes":"","titulo":"Saúde da Mulher: Conscientização e Prevenção do Câncer de Mama e do Colo do Útero","curso":"Biomedicina","parceiro":"Ubs 02 de Taguatinga","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"saude da mulher conscientizacao e prevencao do cancer de mama e do colo do utero|biomedicina","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":160,"enviado":"2026-10-17","estudantes":"","titulo":"Saúde da Mulher: Conscientização e Prevenção do Câncer de Mama e do Colo do Útero","curso":"Biomedicina","parceiro":"UBS 02 Taguatinga","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"saude da mulher conscientizacao e prevencao do cancer de mama e do colo do utero|biomedicina","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":161,"enviado":"2026-10-17","estudantes":"","titulo":"Saúde da Mulher: Conscientização e Prevenção do Câncer de Mama e do Colo do Útero","curso":"Biomedicina","parceiro":"UBS 02 TAGUATINGA","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"saude da mulher conscientizacao e prevencao do cancer de mama e do colo do utero|biomedicina","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":162,"enviado":"2026-10-17","estudantes":"","titulo":"Saúde da Mulher: Conscientização e Prevenção do Câncer de Mama e do Colo do Útero","curso":"Biomedicina","parceiro":"UBS 2 DE Taguatinga","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"saude da mulher conscientizacao e prevencao do cancer de mama e do colo do utero|biomedicina","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""},{"id":163,"enviado":"2026-10-17","estudantes":"","titulo":"Meus direitos, minha voz","curso":"Direito","parceiro":"Casa batuíra","nota":null,"situacao":"Não avaliado","avaliado":"Não","instrumento":"Não avaliado","potencial":"Não avaliado","chave":"meus direitos minha voz|direito","c1":"","c4":"","c5":"","c6":"","c7":"","c8":"","detalhe_instrumento":"","feedback":""}]</script>
+<script>
+var __DADOS = JSON.parse(document.getElementById('dados').textContent);
+window.dash = (function(){
+  var store = { relatorios: { status:'ok', data: __DADOS } };
+  var cbs = [];
+  return {
+    colors: ['#2f7d6d', '#c9722e', '#5b7db1', '#8a6bb0', '#b3a14a'],
+    data: function(id){ return store[id] || { status:'loading' }; },
+    calc: function(id, def){
+      try { store[id] = { status:'ok', data: def.fn.apply(null, def.inputs.map(function(i){ return store[i].data; })) }; }
+      catch(e){ store[id] = { status:'error', error:String(e) }; }
+    },
+    onData: function(cb){ cbs.push(cb); setTimeout(function(){ cb(); }, 0); }
+  };
+})();
+ 
+(function () {
+  var ANON = true;
+  var COLS = ANON ? 6 : 7;
+  var fmtInt = new Intl.NumberFormat('pt-BR');
+  var fmtDec2 = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var fmtDec1 = new Intl.NumberFormat('pt-BR', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  var fmtPct = new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 });
+  function fmt(kind, v) {
+    if (v === null || v === undefined || v === '') return '—';
+    if (kind === 'int') return fmtInt.format(v);
+    if (kind === 'dec2') return fmtDec2.format(v);
+    if (kind === 'pct') return fmtPct.format(v);
+    return String(v);
+  }
+  function norm(s) { return String(s || '').normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase(); }
+  function $(id) { return document.getElementById(id); }
+  if (ANON) {
+    var fa = $('f-aluno'); if (fa) fa.closest('.lx-field').remove();
+    var th0 = document.querySelector('th[data-field="estudantes"]'); if (th0) th0.remove();
+    var de = $('d-estudantes'); if (de) de.parentNode.remove();
+    var fbw = $('d-fb-wrap'); if (fbw) fbw.remove();
+    var iww = $('d-inst-wrap'); if (iww) iww.remove();
+  }
+ 
+  /* ---------- Cálculos sobre o dataset relatorios ---------- */
+  dash.calc('kpis', {
+    inputs: ['relatorios'],
+    title: 'Indicadores gerais',
+    description: 'Contagens, média e percentuais calculados sobre todos os relatórios.',
+    fn: function (relatorios) {
+      var rows = relatorios;
+      function c(f) { return rows.filter(f).length; }
+      var notas = rows.map(function (r) { return r.nota; }).filter(function (v) { return v !== null && v !== undefined; });
+      var comNota = notas.length;
+      var aprov = c(function (r) { return r.situacao === 'Aprovado'; });
+      var iA = c(function (r) { return r.instrumento === 'Aplicado, com resultados'; });
+      var iS = c(function (r) { return r.instrumento === 'Descrito, sem resultados'; });
+      var iX = c(function (r) { return r.instrumento === 'Ausente'; });
+      var pAlto = c(function (r) { return r.potencial === 'Artigo, potencial alto'; });
+      var pCri = c(function (r) { return r.potencial === 'Artigo/PIC, critério objetivo'; });
+      var m = {
+        enviados: rows.length,
+        titulos: new Set(rows.map(function (r) { return r.chave; })).size,
+        avaliados: c(function (r) { return r.avaliado === 'Sim'; }),
+        nao_avaliados: c(function (r) { return r.avaliado === 'Não'; }),
+        com_nota: comNota,
+        duplicados: c(function (r) { return r.situacao === 'Duplicado (desconsiderado)'; }),
+        media: comNota ? notas.reduce(function (a, b) { return a + b; }, 0) / comNota : null,
+        aprovados: aprov,
+        reenvio: c(function (r) { return r.situacao === 'Reenvio necessário'; }),
+        pct_aprovados: comNota ? aprov / comNota : null,
+        instr_aplicado: iA, instr_sem: iS, instr_ausente: iX,
+        instr_total: iA + iS,
+        pct_instr: comNota ? (iA + iS) / comNota : null,
+        pot_alto: pAlto, pot_criterio: pCri, pot_total: pAlto + pCri,
+        pot_condicional: c(function (r) { return r.potencial === 'Potencial condicional'; })
+      };
+      return Object.keys(m).map(function (k) { return { metrica: k, valor: m[k] }; });
+    }
+  });
+ 
+  dash.calc('situacao', {
+    inputs: ['relatorios'],
+    title: 'Situação final',
+    description: 'Quantidade de relatórios por situação final.',
+    fn: function (relatorios) {
+      return ['Aprovado', 'Reenvio necessário', 'Duplicado (desconsiderado)', 'Não avaliado'].map(function (s) {
+        return { situacao: s, n: relatorios.filter(function (r) { return r.situacao === s; }).length };
+      });
+    }
+  });
+ 
+  dash.calc('instrumento', {
+    inputs: ['relatorios'],
+    title: 'Instrumento de impacto',
+    description: 'Relatórios com nota, por situação do instrumento de avaliação de impacto.',
+    fn: function (relatorios) {
+      return ['Aplicado, com resultados', 'Descrito, sem resultados', 'Ausente'].map(function (s) {
+        return { instrumento: s, n: relatorios.filter(function (r) { return r.instrumento === s; }).length };
+      });
+    }
+  });
+ 
+  dash.calc('faixas', {
+    inputs: ['relatorios'],
+    title: 'Notas por faixa',
+    description: 'Quantidade de relatórios com nota em cada faixa.',
+    fn: function (relatorios) {
+      var bands = [['Abaixo de 6,0', 0, 6], ['6,0 a 6,9', 6, 7], ['7,0 a 7,9', 7, 8], ['8,0 a 8,9', 8, 9], ['9,0 ou mais', 9, 11]];
+      return bands.map(function (b, i) {
+        return { ordem: i + 1, faixa: b[0], n: relatorios.filter(function (r) { return r.nota !== null && r.nota >= b[1] && r.nota < b[2]; }).length };
+      });
+    }
+  });
+ 
+  dash.calc('por_curso', {
+    inputs: ['relatorios'],
+    title: 'Envios por curso',
+    description: 'Enviados, avaliados, aprovados e média de nota por curso.',
+    fn: function (relatorios) {
+      var m = {};
+      relatorios.forEach(function (r) {
+        var c = m[r.curso] || (m[r.curso] = { curso: r.curso, enviados: 0, avaliados: 0, aprovados: 0, soma: 0, n: 0 });
+        c.enviados++;
+        if (r.avaliado === 'Sim') c.avaliados++;
+        if (r.situacao === 'Aprovado') c.aprovados++;
+        if (r.nota !== null) { c.soma += r.nota; c.n++; }
+      });
+      return Object.keys(m).map(function (k) {
+        var c = m[k];
+        return { curso: c.curso, enviados: c.enviados, avaliados: c.avaliados, aprovados: c.aprovados, media: c.n ? Math.round(c.soma / c.n * 100) / 100 : null };
+      }).sort(function (a, b) { return b.enviados - a.enviados || a.curso.localeCompare(b.curso); });
+    }
+  });
+ 
+  dash.calc('potencial', {
+    inputs: ['relatorios'],
+    title: 'Potencial acadêmico',
+    description: 'Quantidade de relatórios por categoria de potencial para artigo ou PIC.',
+    fn: function (relatorios) {
+      return ['Artigo, potencial alto', 'Artigo/PIC, critério objetivo', 'Potencial condicional', 'Não indicado', 'Sem triagem'].map(function (s) {
+        return { potencial: s, n: relatorios.filter(function (r) { return r.potencial === s; }).length };
+      });
+    }
+  });
+ 
+  /* ---------- Estado da consulta ---------- */
+  var state = { aluno: '', titulo: '', curso: '', sit: '', ins: '', pot: '', sort: 'id', dir: 'asc', sel: null, built: false };
+ 
+  function failLine(el) {
+    var d = document.createElement('div');
+    d.className = 'lx-fail';
+    d.textContent = 'Failed to load';
+    el.replaceChildren(d);
+  }
+  function mk(tag, cls, text) {
+    var e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  }
+  function okData(id) {
+    var d = dash.data(id);
+    return d.status === 'ok' ? d.data : null;
+  }
+ 
+  var SIT_COL = function () { return { 'Aprovado': dash.colors[0], 'Reenvio necessário': dash.colors[1], 'Duplicado (desconsiderado)': 'var(--cds-chart-muted)', 'Não avaliado': 'var(--cds-chart-grid)' }; };
+  var INS_COL = function () { return { 'Aplicado, com resultados': dash.colors[0], 'Descrito, sem resultados': dash.colors[2], 'Ausente': 'var(--cds-chart-muted)' }; };
+ 
+  function seg(segId, legId, rows, key, colors, baseTotal, pctBase, skip) {
+    var seg = $(segId), leg = $(legId);
+    var total = baseTotal || rows.reduce(function (a, r) { return a + r.n; }, 0);
+    seg.replaceChildren();
+    leg.replaceChildren();
+    rows.forEach(function (r) {
+      if (r.n > 0) {
+        var s = mk('span');
+        s.style.width = (r.n / total * 100) + '%';
+        s.style.background = colors[r[key]];
+        seg.appendChild(s);
+      }
+      var li = mk('li');
+      var sw = mk('span', 'lx-sw');
+      sw.style.background = colors[r[key]];
+      li.append(sw, mk('span', '', r[key]), mk('span', 'n', fmtInt.format(r.n)), mk('span', 'p', (skip && skip.indexOf(r[key]) >= 0) ? '' : fmtPct.format((pctBase || total) ? r.n / (pctBase || total) : 0)));
+      leg.appendChild(li);
+    });
+  }
+ 
+  function drawCharts() {
+    var sit = okData('situacao');
+    if (sit) seg('seg-sit', 'leg-sit', sit, 'situacao', SIT_COL(), 0, sit.filter(function (x) { return x.situacao === 'Aprovado' || x.situacao === 'Reenvio necessário'; }).reduce(function (a, x) { return a + x.n; }, 0), ['Duplicado (desconsiderado)', 'Não avaliado']); else { failLine($('leg-sit')); $('seg-sit').replaceChildren(); }
+ 
+    var ins = okData('instrumento');
+    if (ins) seg('seg-ins', 'leg-ins', ins, 'instrumento', INS_COL()); else { failLine($('leg-ins')); $('seg-ins').replaceChildren(); }
+ 
+    var fx = okData('faixas'), h = $('hist');
+    if (fx) {
+      var max = Math.max.apply(null, fx.map(function (r) { return r.n; })) || 1;
+      h.replaceChildren();
+      fx.forEach(function (r) {
+        var col = mk('div');
+        var bar = mk('div', 'bar');
+        bar.style.height = Math.max(2, r.n / max * 8) + 'rem';
+        bar.style.background = r.ordem >= 3 ? dash.colors[0] : dash.colors[1];
+        col.append(mk('div', 'v', fmtInt.format(r.n)), bar, mk('div', 'l', r.faixa));
+        h.appendChild(col);
+      });
+    } else failLine(h);
+ 
+    var cs = okData('por_curso'), cc = $('cursos');
+    if (cs) {
+      var mx = Math.max.apply(null, cs.map(function (r) { return r.enviados; })) || 1;
+      cc.replaceChildren();
+      cs.forEach(function (r) {
+        var row = mk('div', 'lx-course');
+        var wrap = mk('div', 'lx-track-wrap');
+        var all = mk('div', 'all'); all.style.width = (r.enviados / mx * 100) + '%';
+        var ok = mk('div', 'ok'); ok.style.width = (r.aprovados / mx * 100) + '%'; ok.style.background = dash.colors[0];
+        wrap.append(all, ok);
+        row.append(mk('div', 'name', r.curso), wrap,
+          mk('div', 'meta', fmtInt.format(r.enviados) + (r.enviados === 1 ? ' enviado · ' : ' enviados · ') + fmtInt.format(r.aprovados) + (r.aprovados === 1 ? ' aprovado · média ' : ' aprovados · média ') + (r.media === null ? '—' : fmtDec1.format(r.media))));
+        cc.appendChild(row);
+      });
+    } else failLine(cc);
+ 
+    var pt = okData('potencial'), pl = $('pot');
+    if (pt) {
+      var DESC = {
+        'Artigo, potencial alto': 'Registrado na triagem da avaliação.',
+        'Artigo/PIC, critério objetivo': 'Nota igual ou superior a 8,5 e instrumento aplicado com resultados, ainda sem triagem registrada.',
+        'Potencial condicional': 'Bom trabalho com lacunas sanáveis, como dados sem tabulação.',
+        'Não indicado': 'Triagem registrada sem indicação.',
+        'Sem triagem': 'Ainda sem triagem registrada e fora do critério objetivo.'
+      };
+      pl.replaceChildren();
+      pt.forEach(function (r) {
+        var li = mk('li');
+        li.append(mk('span', '', r.potencial), mk('span', 'n', fmtInt.format(r.n)), mk('span', 'd', DESC[r.potencial] || ''));
+        pl.appendChild(li);
+      });
+    } else failLine(pl);
+  }
+ 
+  function fillKpis() {
+    var k = okData('kpis');
+    var map = {};
+    if (k) k.forEach(function (r) { map[r.metrica] = r.valor; });
+    document.querySelectorAll('[data-source="kpis"][data-where]').forEach(function (el) {
+      var key = (el.getAttribute('data-where') || '').replace('metrica=', '');
+      var kind = el.getAttribute('data-fmt');
+      if (!kind) kind = (key.indexOf('pct_') === 0) ? 'pct' : 'int';
+      if (k && key in map) el.textContent = fmt(kind, map[key]);
+    });
+  }
+ 
+  /* ---------- Tabela ---------- */
+  function buildControls(rows) {
+    function fillSel(id, key, first) {
+      var sel = $(id);
+      var vals = Array.from(new Set(rows.map(function (r) { return r[key]; }))).filter(Boolean).sort(function (a, b) { return a.localeCompare(b, 'pt-BR'); });
+      sel.replaceChildren(new Option(first, ''));
+      vals.forEach(function (v) { sel.appendChild(new Option(v, v)); });
+    }
+    fillSel('f-curso', 'curso', 'Todos');
+    fillSel('f-sit', 'situacao', 'Todas');
+    fillSel('f-ins', 'instrumento', 'Todos');
+    fillSel('f-pot', 'potencial', 'Todos');
+    state.built = true;
+  }
+ 
+  function filtered(rows) {
+    var a = norm(state.aluno), t = norm(state.titulo);
+    var out = rows.filter(function (r) {
+      return (!a || norm(r.estudantes).indexOf(a) >= 0) &&
+        (!t || norm(r.titulo).indexOf(t) >= 0) &&
+        (!state.curso || r.curso === state.curso) &&
+        (!state.sit || r.situacao === state.sit) &&
+        (!state.ins || r.instrumento === state.ins) &&
+        (!state.pot || r.potencial === state.pot);
+    });
+    var k = state.sort, d = state.dir === 'asc' ? 1 : -1;
+    out.sort(function (x, y) {
+      var a1 = x[k], b1 = y[k];
+      if (a1 === null || a1 === undefined) return 1;
+      if (b1 === null || b1 === undefined) return -1;
+      if (typeof a1 === 'number') return (a1 - b1) * d;
+      return String(a1).localeCompare(String(b1), 'pt-BR') * d;
+    });
+    return out;
+  }
+ 
+  function drawTable() {
+    var d = dash.data('relatorios'), body = $('corpo');
+    if (d.status !== 'ok') {
+      if (d.status === 'error') { var tr = mk('tr'); var td = mk('td'); td.colSpan = COLS; failLine(td); tr.appendChild(td); body.replaceChildren(tr); }
+      return;
+    }
+    var rows = d.data;
+    if (!state.built) buildControls(rows);
+    var list = filtered(rows);
+    $('contagem').textContent = 'Mostrando ' + fmtInt.format(list.length) + ' de ' + fmtInt.format(rows.length) + ' relatórios';
+    document.querySelectorAll('.lx-th').forEach(function (b) {
+      b.setAttribute('aria-sort', b.getAttribute('data-sort') === state.sort ? (state.dir === 'asc' ? 'ascending' : 'descending') : 'none');
+    });
+    body.replaceChildren();
+    if (!list.length) {
+      var tr0 = mk('tr'); var td0 = mk('td', 'lx-empty', 'Nenhum relatório encontrado com esses filtros.'); td0.colSpan = COLS; tr0.appendChild(td0); body.appendChild(tr0);
+      return;
+    }
+    list.forEach(function (r) {
+      var tr = mk('tr', 'lx-row');
+      tr.setAttribute('data-key', String(r.id));
+      tr.tabIndex = 0;
+      tr.setAttribute('aria-selected', String(state.sel === r.id));
+      var c1 = mk('td'); c1.appendChild(mk('div', 'lx-clamp', r.estudantes));
+      var c2 = mk('td'); c2.appendChild(mk('div', 'lx-clamp', r.titulo));
+      var c3 = mk('td', '', r.curso);
+      var c4 = mk('td', 'num', r.nota === null ? '—' : fmtDec1.format(r.nota));
+      var c5 = mk('td'); var pill = mk('span', 'lx-pill', r.situacao); pill.setAttribute('data-k', r.situacao); c5.appendChild(pill);
+      var c6 = mk('td', '', r.instrumento);
+      var c7 = mk('td', '', r.potencial);
+      tr.append.apply(tr, ANON ? [c2, c3, c4, c5, c6, c7] : [c1, c2, c3, c4, c5, c6, c7]);
+      body.appendChild(tr);
+    });
+  }
+ 
+  function showDetail(id) {
+    var d = dash.data('relatorios');
+    if (d.status !== 'ok') return;
+    var r = d.data.filter(function (x) { return x.id === id; })[0];
+    if (!r) return;
+    state.sel = id;
+    var where = 'id=' + id;
+    function put(elId, field, text) {
+      var el = $(elId);
+      if (!el) return;
+      el.textContent = text;
+      el.setAttribute('data-source', 'relatorios');
+      el.setAttribute('data-field', field);
+      el.setAttribute('data-where', where);
+    }
+    put('d-titulo', 'titulo', r.titulo);
+    put('d-estudantes', 'estudantes', r.estudantes);
+    put('d-curso', 'curso', r.curso);
+    put('d-parceiro', 'parceiro', r.parceiro || '—');
+    var dt = r.enviado ? r.enviado.split('-').reverse().join('/') : '—';
+    put('d-enviado', 'enviado', dt);
+    put('d-nota', 'nota', r.nota === null ? '—' : fmtDec1.format(r.nota));
+    put('d-situacao', 'situacao', r.situacao);
+    put('d-instrumento', 'instrumento', r.instrumento);
+    put('d-potencial', 'potencial', r.potencial);
+    put('d-id', 'id', String(r.id));
+    var crit = $('d-crit'); crit.replaceChildren();
+    [['c1', 'Interação dialógica'], ['c4', 'Protagonismo estudantil'], ['c5', 'DCNs'], ['c6', 'ODS'], ['c7', 'Componente presencial'], ['c8', 'Cronograma e execução']].forEach(function (p) {
+      var box = mk('div');
+      var v = mk('span', '', r[p[0]] || '—');
+      v.setAttribute('data-source', 'relatorios'); v.setAttribute('data-field', p[0]); v.setAttribute('data-where', where);
+      box.append(mk('span', 'k', p[1]), v);
+      crit.appendChild(box);
+    });
+    crit.hidden = r.avaliado !== 'Sim';
+    var iw = $('d-inst-wrap'), fw = $('d-fb-wrap');
+    if (iw) { iw.hidden = !r.detalhe_instrumento; $('d-inst').textContent = r.detalhe_instrumento; }
+    if (fw) { fw.hidden = !r.feedback; $('d-fb').textContent = r.feedback; }
+    var panel = $('detalhe');
+    panel.hidden = false;
+    panel.scrollIntoView({ block: 'nearest', behavior: 'smooth' });
+    drawTable();
+  }
+ 
+  /* ---------- Eventos ---------- */
+  function bind(id, key, ev) {
+    if (!$(id)) return;
+    $(id).addEventListener(ev, function (e) { state[key] = e.target.value; drawTable(); });
+  }
+  bind('f-aluno', 'aluno', 'input');
+  bind('f-titulo', 'titulo', 'input');
+  bind('f-curso', 'curso', 'change');
+  bind('f-sit', 'sit', 'change');
+  bind('f-ins', 'ins', 'change');
+  bind('f-pot', 'pot', 'change');
+  $('f-reset').addEventListener('click', function () {
+    state.aluno = state.titulo = state.curso = state.sit = state.ins = state.pot = '';
+    ['f-aluno', 'f-titulo', 'f-curso', 'f-sit', 'f-ins', 'f-pot'].forEach(function (i) { if ($(i)) $(i).value = ''; });
+    drawTable();
+  });
+  $('d-fechar').addEventListener('click', function () { $('detalhe').hidden = true; state.sel = null; drawTable(); });
+  document.querySelectorAll('.lx-th').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var k = b.getAttribute('data-sort');
+      if (state.sort === k) state.dir = state.dir === 'asc' ? 'desc' : 'asc'; else { state.sort = k; state.dir = (k === 'nota') ? 'desc' : 'asc'; }
+      drawTable();
+    });
+  });
+  var corpo = $('corpo');
+  corpo.addEventListener('click', function (e) {
+    var tr = e.target.closest('tr[data-key]');
+    if (tr) showDetail(Number(tr.getAttribute('data-key')));
+  });
+  corpo.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var tr = e.target.closest('tr[data-key]');
+    if (tr) { e.preventDefault(); showDetail(Number(tr.getAttribute('data-key'))); }
+  });
+ 
+  dash.onData(function () {
+    fillKpis();
+    drawCharts();
+    drawTable();
+  });
+})();
+</script>
+</body>
+</html>
